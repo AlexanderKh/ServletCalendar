@@ -11,4 +11,12 @@
         <servlet-name>HelloWorld</servlet-name>
         <url-pattern>/servlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Calendar</servlet-name>
+        <servlet-class>CalendarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Calendar</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 </web-app>
