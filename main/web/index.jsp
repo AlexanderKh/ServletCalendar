@@ -15,7 +15,8 @@
   Calendar calendar = Calendar.getInstance();
   if (year != null && month != null){
     calendar.set(Integer.valueOf(year), Integer.valueOf(month), 1);
-  }
+  }else
+    calendar.set(Calendar.DAY_OF_MONTH, 1);
   calendar.add(Calendar.MONTH, -1);
 %>
 <a href="/?year=<%=calendar.get(Calendar.YEAR)%>&month=<%=calendar.get(Calendar.MONTH)%>">
@@ -56,7 +57,6 @@
             </tr>
         <%
         }
-    %>
     %>
 </table>
 </body>
