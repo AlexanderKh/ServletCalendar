@@ -26,9 +26,9 @@ public class First extends HttpServlet {
             CalendarWriter writer = new ConsoleWriter(out);
             Calendar currentMonth = today.get(0).getFirstMonth();
             currentMonth.add(Calendar.MONTH, -1);
-            out.println("<a href='/?year=" + currentMonth.get(Calendar.YEAR) + "&month=" + currentMonth.get(Calendar.MONTH) + "'> prev month </a>");
+            out.println("<a href='/servlet?year=" + currentMonth.get(Calendar.YEAR) + "&month=" + currentMonth.get(Calendar.MONTH) + "'> prev month </a>");
             currentMonth.add(Calendar.MONTH, 2);
-            out.println("<a href='/?year=" + currentMonth.get(Calendar.YEAR) + "&month=" + currentMonth.get(Calendar.MONTH)  + "'> next month </a>");
+            out.println("<a href='/servlet?year=" + currentMonth.get(Calendar.YEAR) + "&month=" + currentMonth.get(Calendar.MONTH)  + "'> next month </a>");
             writer.writeYears(today, formatter);
         } catch (IOException e) {
             e.printStackTrace();
