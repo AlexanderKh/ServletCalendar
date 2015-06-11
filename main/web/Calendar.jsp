@@ -1,15 +1,18 @@
+<%@ page import="alex.calendar.Day" %>
+<%@ page import="alex.calendar.DayOfWeek" %>
+<%@ page import="alex.calendar.MonthCalendar" %>
+<%@ page import="alex.calendar.Week" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.Locale" %>
-<%@ page import="alex.calendar.MonthCalendar" %>
-<%@ page import="alex.calendar.DayOfWeek" %>
-<%@ page import="alex.calendar.Week" %>
-<%@ page import="alex.calendar.Day" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <title>Month Calendar</title>
 </head>
 <body>
+<center>
+<h1>Month Calendar</h1><hr>
 <%
     String year = request.getParameter("year");
     String month = request.getParameter("month");
@@ -32,12 +35,12 @@
     <%=calendar.get(Calendar.YEAR)%>
     <%=calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())%>
 </a>
-<br>
+<br><hr>
 <%
     calendar.add(Calendar.MONTH, -1);
     MonthCalendar monthCalendar = new MonthCalendar(calendar);
 %>
-<table border=1>
+<table border = 1>
     <tr>
         <%for (DayOfWeek dayOfWeek : DayOfWeek.values()){%>
             <th>
@@ -48,12 +51,15 @@
     <%for (Week week : monthCalendar.getWeeks()){%>
         <tr>
             <%for (Day day : week.getDays()){%>
-                <td style="color:<%=day.getType().weekendDay() ? "'darkRed'" : "'black'"%>">
-                    <%=day.getDayInMonth()%>
+                <td>
+                    <font  color=<%=day.getType().weekendDay() ? "'DarkRed'" : "'Black'"%>>
+                        <%=day.getDayInMonth()%>
+                    </font>
                 </td>
             <%}%>
         </tr>
     <%}%>
 </table>
+</center>
 </body>
 </html>
