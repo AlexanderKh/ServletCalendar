@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Calendar;
 import java.util.List;
 
 public class First extends HttpServlet {
@@ -23,10 +24,11 @@ public class First extends HttpServlet {
             CalendarFormatter formatter = new HTMLFormatter();
             List<Year> today = new StringParamReader(req.getParameter("year"), req.getParameter("month")).getYears();
             CalendarWriter writer = new ConsoleWriter(out);
-            int currentMonth = today.get(0).getMonthCalendars().iterator().next().getMonthNumber();
-            int currentYear = Integer.parseInt(today.get(0).getMonthCalendars().iterator().next().getYear());
-            out.println("<a href='/?year=" + pervYear + "&month=" + prevMonth + "'> prev month </a>");
-            out.println("<a href='/?year=" + nextYear + "&month=" + nextMonth + "'> next month </a>");
+            Calendar currentMonth = today.get(0).getFirstMonth();
+            currentMonth.add(Calendar.MONTH, -1);
+            out.println("<a href='/?year=" + currentMonth.get(Calendar.YEAR) + "&month=" + currentMonth.get(Calendar.MONTH) + "'> prev month </a>");
+            currentMonth.add(Calendar.MONTH, 2);
+            out.println("<a href='/?year=" + currentMonth.get(Calendar.YEAR) + "&month=" + currentMonth.get(Calendar.MONTH)  + "'> next month </a>");
             writer.writeYears(today, formatter);
         } catch (IOException e) {
             e.printStackTrace();
